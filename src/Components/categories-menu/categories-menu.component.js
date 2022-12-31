@@ -1,22 +1,22 @@
 import './categories-menu.styles.scss'
-import CategoryItem from './Components/category-item/category-item.component'
+import CategoryItem from '../category-item/category-item.component'
 
-const categoriesMenu = ({categories}) => {
+const CategoriesMenu = ({categories}) => {
 
     return(
+        <div className="categories-container">
 
-        categories.map((category) => (
+           { categories.map((category) => (
 
-        <CategoryItem 
-        key = {category.id} 
-        category={category} 
-        />
+            <CategoryItem 
+            key = {category.id} 
+            category={category} 
+            />
 
-        ))
-
-
+))}
+        </div>
     )
 
 }
 
-export default categoriesMenu;
+export default CategoriesMenu;

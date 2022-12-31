@@ -1,5 +1,5 @@
 import './categories.styles.scss';
-import categoriesMenu from './Components/categories-menu/categories-menu.component'
+import CategoriesMenu from './Components/categories-menu/categories-menu.component'
 
 const App = () => {
 
@@ -32,9 +32,9 @@ const App = () => {
   ]
 
   return (
-    <div className="categories-container">
+    <div>
 
-        <categoriesMenu categories = {categories} />
+        <CategoriesMenu categories = {categories} />
 
     </div>
   );
