@@ -65,8 +65,8 @@ return userDocRef;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
-    if(!email || !password) return;
-
+    if(!email || !password); 
+    
     return await createUserWithEmailAndPassword(auth,email,password);
 
 }
