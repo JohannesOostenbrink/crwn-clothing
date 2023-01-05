@@ -2,9 +2,10 @@ import {initializeApp} from 'firebase/app';
 
 import {
     getAuth, 
-    signInWithRedirect, 
+    // signInWithRedirect, 
     signInWithPopup, 
-    GoogleAuthProvider
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword
 } from 'firebase/auth';
 import {
     getFirestore,
@@ -32,7 +33,7 @@ GoogleProvider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, GoogleProvider);
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, GoogleProvider);
+// export const signInWithGoogleRedirect = () => signInWithRedirect(auth, GoogleProvider);
 export const db = getFirestore(); 
 
 export const createUserDocumentFromAuth = async (userAuth) => {
@@ -62,3 +63,10 @@ if(!userSnapshot.exists()) {
 return userDocRef; 
 
 };
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    if(!email || !password) return;
+
+    return await createUserWithEmailAndPassword(auth,email,password);
+
+}
