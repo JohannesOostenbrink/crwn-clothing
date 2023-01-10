@@ -67,13 +67,11 @@ const resetFormFields = () => {
     return(
 
         <div className='sign-up-container'>
-            <h2>Don't have an account?</h2>
 
+            <h2>Don't have an account?</h2>
             <span>Sign up with your email and password</span>
 
-            <form onSubmit = {handleSubmit}/>
-
-<FormInput 
+                <FormInput 
                 label="Display Name"
                 type="text"
                 required onChange = {handleChange}
@@ -81,7 +79,7 @@ const resetFormFields = () => {
                 value = {displayName}
                 />
 
-<FormInput 
+                <FormInput 
                 label="Email"
                 type="email"
                 required onChange = {handleChange}
@@ -89,7 +87,7 @@ const resetFormFields = () => {
                 value = {email}
                 />
 
-<FormInput 
+                <FormInput 
                 label="Password"
                 type="password"
                 required onChange = {handleChange}
@@ -97,7 +95,7 @@ const resetFormFields = () => {
                 value = {password}
                 />
 
-<FormInput 
+                <FormInput 
                 label="Confirm Password"
                 type="password"
                 required onChange = {handleChange}
@@ -105,9 +103,9 @@ const resetFormFields = () => {
                 value = {confirmPassword}
                 />
 
-<Button type="submit" > Sign up </Button>
+        <Button type="submit" onClick={handleSubmit} > Sign up </Button>
 
-        </div>
+    </div>
     )
 }
 
