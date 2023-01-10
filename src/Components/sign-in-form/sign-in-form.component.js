@@ -1,30 +1,23 @@
 import {useState} from 'react'
-import FormInput from '../form-input/form-input.component'
 import { 
     signInWithGooglePopup,
     SignInAuthUserWithEmailAndPassword,
     createUserDocumentFromAuth
-} 
-    from '../../utils/firebase/firebase.utils'
-
-import './sign-in.styles.scss'
+}from '../../utils/firebase/firebase.utils'
+import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
+import './sign-in.styles.scss'
+
 
 const DefaultFormFields = {
     email: '',
     password: '',
 }
 
-
 const SignInForm = () => {
 
 const [formFields, setFormFields] = useState(DefaultFormFields)
 const {email, password} = formFields;
-
-const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
-};
 
 const handleChange = (e) => {
     const {name, value} = e.target;
@@ -34,15 +27,11 @@ const handleChange = (e) => {
 
 const handleSubmit = async (event) => {
     event.preventDefault();
-
     try{
         const response = await SignInAuthUserWithEmailAndPassword(
             email, 
             password
-            
-            );
-
-
+        );
     }catch(error){
         if(error.code == 'auth/wrong-password'){
             alert('Wrong Password')
@@ -50,10 +39,13 @@ const handleSubmit = async (event) => {
         else if(error.code =='auth/user-not-found'){
             alert('User not found')
         }
-
     }
-
  }
+
+ const signInWithGoogle = async () => {
+    const { user } = await signInWithGooglePopup();
+    await createUserDocumentFromAuth(user);
+};
 
     return(
 
@@ -61,7 +53,7 @@ const handleSubmit = async (event) => {
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
 
-<FormInput 
+<FormInput
                 label="Email"
                 type="email"
                 required onChange = {handleChange}
@@ -82,8 +74,6 @@ const handleSubmit = async (event) => {
             <Button type="submit" onClick={handleSubmit}> Sign In </Button>
             <Button buttonType='google' onClick = {signInWithGoogle} > Google Sign In </Button>
         </div>
-
-
         </div>
     )
 }
