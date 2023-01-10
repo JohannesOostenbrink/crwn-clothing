@@ -26,11 +26,6 @@ const signInWithGoogle = async () => {
     await createUserDocumentFromAuth(user);
 };
 
-const SignInEmailPassword = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
-};
-
 const handleChange = (e) => {
     const {name, value} = e.target;
     setFormFields({...formFields, [name]:value})
@@ -49,10 +44,12 @@ const handleSubmit = async (event) => {
 
 
     }catch(error){
-        if(error){
-            alert('no such user identified')
+        if(error.code == 'auth/wrong-password'){
+            alert('Wrong Password')
         }
-        console.log('user login error', error)
+        else if(error.code =='auth/user-not-found'){
+            alert('User not found')
+        }
 
     }
 
@@ -63,8 +60,6 @@ const handleSubmit = async (event) => {
         <div className='sign-in-container'>
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
-
-            <form onSubmit = {handleSubmit}/>
 
 <FormInput 
                 label="Email"
@@ -82,12 +77,10 @@ const handleSubmit = async (event) => {
                 value = {password}
                 />
 
-        <div className = 'buttons-container' >
+        <div className='Buttons-container' >
             
-            <Button type="submit" > Sign In </Button>
+            <Button type="submit" onClick={handleSubmit}> Sign In </Button>
             <Button buttonType='google' onClick = {signInWithGoogle} > Google Sign In </Button>
-
-
         </div>
 
 
