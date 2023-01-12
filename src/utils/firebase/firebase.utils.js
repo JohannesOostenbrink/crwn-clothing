@@ -1,5 +1,4 @@
 import {initializeApp} from 'firebase/app';
-
 import {
     getAuth, 
     // signInWithRedirect, 
@@ -8,7 +7,6 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword
 } from 'firebase/auth';
-
 import {
     getFirestore,
     doc,

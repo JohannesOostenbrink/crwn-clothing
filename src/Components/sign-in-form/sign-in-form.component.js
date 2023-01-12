@@ -69,7 +69,7 @@ const handleSubmit = async (event) => {
                 value = {password}
                 />
 
-        <div className='Buttons-container' >
+        <div className='buttonsContainer' >
             
             <Button type="submit" onClick={handleSubmit}> Sign In </Button>
             <Button buttonType='google' onClick = {signInWithGoogle} > Google Sign In </Button>
