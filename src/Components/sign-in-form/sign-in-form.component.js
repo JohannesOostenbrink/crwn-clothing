@@ -35,7 +35,7 @@ const handleSubmit = async (event) => {
             email, 
             password
         );
-        setCurrentUser(user);
+        
     }catch(error){
         if(error.code == 'auth/wrong-password'){
             alert('Wrong Password')
