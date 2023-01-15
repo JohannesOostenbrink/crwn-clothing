@@ -1,7 +1,6 @@
 import {initializeApp} from 'firebase/app';
 import {
     getAuth, 
-    // signInWithRedirect, 
     signInWithPopup, 
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
@@ -23,37 +22,36 @@ const firebaseConfig = {
     storageBucket: "crwn-clothing-123f4.appspot.com",
     messagingSenderId: "839282771951",
     appId: "1:839282771951:web:e8dffc4db5d0a2d20b581a"
-  };
+  }
 
-const firebaseApp = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig)
 
-const GoogleProvider = new GoogleAuthProvider();
+const GoogleProvider = new GoogleAuthProvider()
 
 GoogleProvider.setCustomParameters({
     prompt: "select_account"
 })
 
-export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, GoogleProvider);
-// export const signInWithGoogleRedirect = () => signInWithRedirect(auth, GoogleProvider);
+export const auth = getAuth()
 
-
-export const db = getFirestore(); 
+export const signInWithGooglePopup = () => signInWithPopup(auth, GoogleProvider)
 
 export const SignInAuthUserWithEmailAndPassword = async (email,password) => {
     if(!email || !password) return;
     
-    return await signInWithEmailAndPassword(auth, email, password) }
+    return await signInWithEmailAndPassword(auth, email, password) 
+}
+
+export const db = getFirestore()
 
 export const createUserDocumentFromAuth = async (
     userAuth, 
     additionalInformation = {}
     ) => {
-    const userDocRef = doc(db, 'users', userAuth.uid);
 
-const userSnapshot = await getDoc(userDocRef);
+const userDocRef = doc(db, 'users', userAuth.uid)
 
-
+const userSnapshot = await getDoc(userDocRef)
 
 if(!userSnapshot.exists()) {
     const {displayName, email} = userAuth;
@@ -69,13 +67,12 @@ if(!userSnapshot.exists()) {
         });
      } catch (error) {
         console.log('error creating the user', error.message);
-
-        }
-    }
+     }
 
 return userDocRef; 
 
-};
+}
+    }
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
     if(!email || !password); 
