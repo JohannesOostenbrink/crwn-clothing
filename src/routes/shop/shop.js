@@ -1,16 +1,20 @@
-import SHOP_DATA from '../../shop_data/shop-data.json';
+import { ProductsContext } from '../../context/products.context';
+import { useContext } from 'react';
 
 const Shop = () => {
 
+    const {currentProducts} = useContext(ProductsContext)
+
     return(
         <div>
-            {SHOP_DATA.map(({id, name})=>(
+            {currentProducts.map(({id, name}) => (
                 <div key={id}>
                     <h1>{name}</h1>
-                    </div>
+                </div>
             ))}
         </div>
     )
 }
 
 export default Shop;
+
