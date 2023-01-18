@@ -1,8 +1,9 @@
+import React from 'react'
 import './product-card.styles.scss'
 import Button from '../button/button.component'
 
-const ProductCard = ({Product}) => {
-    const {name, price, imageUrl} = Product
+const ProductCard = ({product}) => {
+    const {name, price, imageUrl} = product
     return(
         <div className = 'Product-Card-Container'>
                 <img src={imageUrl} alt={`${name}`} />
@@ -13,7 +14,5 @@ const ProductCard = ({Product}) => {
                 <Button buttonType='inverted'>Add to Cart</Button>
             </div>
     )
-
-};
-
-export default ProductCard 
+}
+export default ProductCard; 
