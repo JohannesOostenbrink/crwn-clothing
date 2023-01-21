@@ -2,16 +2,16 @@ import { createContext, useState } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
-    cartItem => cartItem.product.id === productToAdd.id
-  );
+    (cartItem) => cartItem.id === productToAdd.id
+    );
   if (existingCartItem) {
     return cartItems.map(cartItem =>
-      cartItem.product.id === productToAdd.id
-        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+      cartItem.id === productToAdd.id? 
+      { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
   }
-  return [...cartItems, { product: productToAdd, quantity: 1 }];
+  return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
 export const CartContext = createContext({
@@ -31,7 +31,7 @@ export const CartProvider = ({ children }) => {
     }
   
     return (
-      <CartContext.Provider value={{ isOpen, toggleDropdown }}>
+      <CartContext.Provider value={{ isOpen, toggleDropdown, addItemToCart, cartItems }}>
         {children}
       </CartContext.Provider>
     );

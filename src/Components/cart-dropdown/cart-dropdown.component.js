@@ -5,12 +5,13 @@ import { useContext } from 'react';
 import CartItem from '.././cart-item/cart-item.component'
 
 const CartDropdown = () => {
-    const {isOpen} = useContext(CartContext);
+    const {isOpen,cartItems} = useContext(CartContext);
     return (
         <div className='cart-dropdown-container'>
             {isOpen &&
             <div className='cart-items'>
-                {[].map(item => <CartItem item={item} />)}
+                {cartItems.map(item => 
+                <CartItem key={item.id} item={item} />)}
 
             </div>
 }
