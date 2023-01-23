@@ -17,12 +17,11 @@ const Checkout = () => {
                     <h2>{name}</h2>
                     <span>{quantity}</span>
                     <br/>
-                    <span onClick = {()=>addItemToCart(cartItem)}> increment </span>
+                    <span onClick = {()=>addItemToCart({id})}> increment </span>
                     <br/>
-                    <span onClick = {()=>removeItemFromCart(cartItem)}> decrement </span>
+                    <span onClick = {()=>removeItemFromCart({id})}> decrement </span>
                 </div>
             )
-
 })}
         </div>
          </div>
