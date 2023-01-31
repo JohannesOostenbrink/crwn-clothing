@@ -13,6 +13,8 @@ import {
     doc,
     getDoc,
     setDoc,
+    collection,
+    writeBatch
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -44,7 +46,25 @@ export const SignInAuthUserWithEmailAndPassword = async (email,password) => {
 
 export const db = getFirestore()
 
-export const createUserDocumentFromAuth = async (
+export const addCollectionAndDocuments = async (
+    collectionKey,
+    objectsToAdd,
+    field='title'
+    ) => {
+    const collectionRef = collection(db,collectionKey);
+    const batch = writeBatch(db);
+
+    if (Array.isArray(objectsToAdd)) {
+        objectsToAdd.forEach((object)=> {
+        const docRef = doc(collectionRef, object[field].toLowerCase());
+        batch.set(docRef, object);
+    });
+    await batch.commit();
+        console.log('done')
+} else { console.error("objectsToAdd is not an array")
+}};
+
+ export const createUserDocumentFromAuth = async (
     userAuth, 
     additionalInformation = {}
     ) => {

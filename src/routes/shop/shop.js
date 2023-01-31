@@ -5,15 +5,16 @@ import './shop.styles.scss'
 
 const Shop = () => {
 
-    const {currentProducts} = useContext(ProductsContext)
+    const {currentProducts} = useContext(ProductsContext);
 
     return(
         <div className='products-container'>
-            {currentProducts.map((product) => (
+            {currentProducts.map((product) => {
+                return(
                 <div >
                     <ProductCard key={product.id} product={product} /> 
-                </div>
-            ))}
+                </div>)
+})}
         </div>
     )
 }
